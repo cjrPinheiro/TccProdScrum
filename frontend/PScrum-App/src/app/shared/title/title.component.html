@@ -1,0 +1,19 @@
+
+
+<div class="d-flex p-3 my-3 text-white bg-dark rounded shadow-sm">
+  <div class="d-flex align-items-center mr-auto">
+    <i class="{{iconClass}} mr-3"></i>
+    <div class="lh-100">
+      <h2 class="mb-0">{{title}}</h2>
+
+      <small>{{subTitle}}</small>
+    </div>
+  </div>
+  <div *ngIf="listBtn">
+    <button class="btn btn-outline-light p-3 ml-3" (click)="list()">Listar {{title}}</button>
+  </div>
+  <div *ngIf="syncBtn">
+    <button class="btn btn-outline-light p-3 ml-3" (click)="sync()">Sincronizar {{title}}</button>
+  </div>
+
+</div>

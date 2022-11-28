@@ -1,0 +1,74 @@
+<!-- <app-login (messageEvent)="receiveLoggedEvent()"></app-login> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" *ngIf="showMenu()">
+  <div class="container">
+    <a class="navbar-brand" routerLink="dashboard">
+      <i class="fa fa-users mb-2"></i>
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [collapse]="isCollapsed" [isAnimated]="true" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
+          <li class="nav-item" routerLinkActive='active'>
+            <a class="nav-link" aria-current="page" routerLink='dashboard'>Dashboard</a>
+          </li>
+          <li class="nav-item" routerLinkActive='active'>
+            <a class="nav-link" aria-current="page" routerLink='performance/list'>Hora Projeto</a>
+          </li>
+          <!-- <li class="nav-item" routerLinkActive='active'>
+            <a class="nav-link" routerLink='contact'>Contato</a>
+          </li> -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+              <a dropdownToggle class="nav-link dropdown-toggle" style="cursor: pointer" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Cadastros
+              </a>
+
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink='projects'>
+                Projetos
+              </a>
+              <div  role="separator" class="divider"></div>
+              <a routerLink='domain' class="dropdown-item" style="cursor: pointer">
+                Dominios
+              </a>
+              <!-- <div  role="separator" class="divider"></div>
+              <a routerLink='dashboard' class="dropdown-item" style="cursor: pointer" aria-disabled="false" disabled>
+                Membros
+              </a> -->
+            </div>
+          </li>
+        </ul>
+        </ng-container>
+      </ul>
+      <div *ngIf="(accountService.currentUser$ | async) === null" class="navbar-nav mr-3 d-xs-none d-none d-md-block">
+        <a class="btn btn-light mr-2 border" routerLink="/user/login">Login</a>
+        <a class="btn btn-warning" routerLink="/user/registration">Cadastrar</a>
+      </div>
+
+      <ul *ngIf="(accountService.currentUser$ | async) !== null" class="navbar-nav">
+        <li class="mr-3">
+          <p-dropdown [options]="domains" [(ngModel)]="selectedDomain" optionLabel="baseUrl" [placeholder]="selectedDomain2"
+           optionValue="id" (onChange)="updateCurrentDomain()"></p-dropdown>
+        </li>
+        <li class="nav-item dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+          <a dropdownToggle class="nav-link dropdown-toggle" style="cursor: pointer" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{user.userName | titlecase}}
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink='user/profile'>
+            Perfil
+          </a>
+          <div  role="separator" class="divider"></div>
+          <a (click)="logout()" class="dropdown-item" style="cursor: pointer">
+            Sair
+          </a>
+        </div>
+        </li>
+    </ul>
+  </div>
+</div>
+</nav>

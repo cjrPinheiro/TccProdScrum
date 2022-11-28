@@ -1,0 +1,91 @@
+<app-title [title] = "'Dashboard'" [iconClass]="'far fa-chart-bar'"></app-title>
+<hr>
+<div class="pb-3">
+
+  <p-tabView>
+    <p-tabPanel header="Visão global">
+      <div class="card rounded shadow-sm p-3 mb-3">
+        <div class="d-flex">
+          <div class="flex-fill pr-3 col-md-4">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-content__label">
+                <div class="input-group-text">Data Inicial: </div>
+              </div>
+              <input class="input-content" type="date" class="form-control" [(ngModel)]="initialDate">
+            </div>
+          </div>
+
+          <div class="flex-fill pr-3 col-md-4">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-content__label">
+                <div class="input-group-text">Data Final: </div>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="endDate">
+            </div>
+          </div>
+
+          <div class="flex-fill pr-3 col-md-4">
+            <div class="input-group mb-2">
+              <button type="button" class="btn btn-success" (click)="getTreeMapChart()">Buscar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="!chartLoaded" class="card flex-fill border-dark m-3 p-0 col-md-12">
+          <div class="col-md-12 text-center">Não há dados suficientes para gerar o gráfico.</div>
+        </div>
+      </div>
+      <div id="treeMapChart" style="width: 100%; height: 500px"></div>
+    </p-tabPanel>
+
+    <p-tabPanel header="Membros">
+      <div class="card rounded shadow-sm p-3 mb-3">
+        <div class="d-flex">
+          <div class="flex-fill pr-3 col-md-3">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-content__label">
+                <div class="input-group-text">Data Inicial: </div>
+              </div>
+              <input class="input-content" type="date" class="form-control" [(ngModel)]="initialDate">
+            </div>
+          </div>
+
+          <div class="flex-fill pr-3 col-md-3">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-content__label">
+                <div class="input-group-text">Data Final: </div>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="endDate">
+            </div>
+          </div>
+
+          <div class="flex-fill pr-3 col-md-3">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-content__label">
+                <div class="input-group-text">Membro: </div>
+              </div>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+          <div class="flex-fill pr-3 col-md-3">
+            <div class="input-group mb-2">
+              <button type="button" class="btn btn-success" (click)="getMemberLineChart()">Buscar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="!chartLoaded" class="card flex-fill border-dark m-3 p-0 col-md-12">
+          <div class="col-md-12 text-center">Não há dados suficientes para gerar o gráfico.</div>
+        </div>
+      </div>
+      <div id="memberLineChart" style="width: 100%; height: 500px"></div>
+    </p-tabPanel>
+
+</p-tabView>
+</div>
+

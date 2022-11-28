@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ChildrenItem.cs" />
+    <Compile Remove="Models\MemberLineChart.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.15.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Atlassian.Connector\PS.Atlassian.Connector.csproj" />
+    <ProjectReference Include="..\PS.Common\PS.Common.csproj" />
+    <ProjectReference Include="..\PS.Domain\PS.Domain.csproj" />
+    <ProjectReference Include="..\PS.Persistence\PS.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
